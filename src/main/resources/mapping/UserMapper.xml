@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winter.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.winter.model.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="config" property="config" jdbcType="VARCHAR" typeHandler="com.winter.handler.JSONHandler"/>
+    <result column="signature" property="signature" jdbcType="VARCHAR" typeHandler="com.winter.handler.SignatureHandler"/>
+    <result column="sex" property="sex" javaType="com.winter.enums.SexEnum" jdbcType="VARCHAR"  typeHandler="com.winter.handler.CodedEnumTypeHandler"/>
+        
+
+    
+  </resultMap>
+  
+  
+  <sql id="Base_Column_List" >
+    user_id, user_name, password, phone, config, signature, sex
+  </sql>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAllUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+  </select>
+  
+  
+  <insert id="insert" parameterType="com.winter.model.User" >
+    insert into t_user (
+	    user_id, 
+	    user_name, 
+	    password, 
+	    phone,
+	    config,
+	    signature,
+	    sex
+    )values (
+	    #{userId,jdbcType=INTEGER}, 
+	    #{userName,jdbcType=VARCHAR}, 
+	    #{password,jdbcType=VARCHAR}, 
+	    #{phone,jdbcType=VARCHAR},
+	    #{config,jdbcType=VARCHAR,typeHandler=com.winter.handler.JSONHandler},
+	    #{signature,jdbcType=VARCHAR},
+	    #{sex,jdbcType=VARCHAR,javaType=com.winter.enums.SexEnum,typeHandler=com.winter.handler.CodedEnumTypeHandler}
+    )
+  </insert>
+</mapper>
