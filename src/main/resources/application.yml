@@ -30,7 +30,7 @@ mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.winter.model
   type-mappers-package: com.winter.mapper
-  type-handlers-package: com.winter.handler
+  #type-handlers-package: com.winter.handler #必须和@MappedTypes注解配合使用
 
 #pagehelper
 pagehelper:

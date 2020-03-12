@@ -7,7 +7,7 @@
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="config" property="config" jdbcType="VARCHAR" typeHandler="com.winter.handler.JSONHandler"/>
-    <result column="signature" property="signature" jdbcType="VARCHAR" typeHandler="com.winter.handler.SignatureHandler"/>
+    <result column="signature" property="signature"  jdbcType="VARCHAR" typeHandler="com.winter.handler.SignatureHandler"/>
     <result column="sex" property="sex" javaType="com.winter.enums.SexEnum" jdbcType="VARCHAR"  typeHandler="com.winter.handler.CodedEnumTypeHandler"/>
         
 
@@ -49,7 +49,7 @@
 	    #{password,jdbcType=VARCHAR}, 
 	    #{phone,jdbcType=VARCHAR},
 	    #{config,jdbcType=VARCHAR,typeHandler=com.winter.handler.JSONHandler},
-	    #{signature,jdbcType=VARCHAR},
+	    #{signature,jdbcType=VARCHAR,typeHandler=com.winter.handler.SignatureHandler},
 	    #{sex,jdbcType=VARCHAR,javaType=com.winter.enums.SexEnum,typeHandler=com.winter.handler.CodedEnumTypeHandler}
     )
   </insert>
