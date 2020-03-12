@@ -9,9 +9,6 @@
     <result column="config" property="config" jdbcType="VARCHAR" typeHandler="com.winter.handler.JSONHandler"/>
     <result column="signature" property="signature"  jdbcType="VARCHAR" typeHandler="com.winter.handler.SignatureHandler"/>
     <result column="sex" property="sex" javaType="com.winter.enums.SexEnum" jdbcType="VARCHAR"  typeHandler="com.winter.handler.CodedEnumTypeHandler"/>
-        
-
-    
   </resultMap>
   
   
