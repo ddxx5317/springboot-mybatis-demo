@@ -11,5 +11,14 @@ public interface UserService {
 
     int addUser(User user);
 
+    /**
+     *
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     List<User> findAllUser(int pageNum, int pageSize);
+
+    int addBatchUsers(List<User> users);
+
 }

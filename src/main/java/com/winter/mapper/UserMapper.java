@@ -13,4 +13,6 @@ public interface UserMapper {
     User selectByPrimaryKey(Integer userId);
 
     List<User> selectAllUser();
+
+    int insertBatch(List<User> users);
 }

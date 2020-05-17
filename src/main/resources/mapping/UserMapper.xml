@@ -41,7 +41,7 @@
 	    signature,
 	    sex
     )values (
-	    #{userId,jdbcType=INTEGER}, 
+	    #{userId,jdbcType=INTEGER},
 	    #{userName,jdbcType=VARCHAR}, 
 	    #{password,jdbcType=VARCHAR}, 
 	    #{phone,jdbcType=VARCHAR},
@@ -50,4 +50,23 @@
 	    #{sex,jdbcType=VARCHAR,javaType=com.winter.enums.SexEnum,typeHandler=com.winter.handler.CodedEnumTypeHandler}
     )
   </insert>
+    <insert id="insertBatch" parameterType="com.winter.model.User">
+        insert into t_user (
+        user_name,
+        password,
+        phone,
+        config,
+        signature,
+        sex
+        )values
+        <foreach collection="list" item="user" index="index" separator=",">
+        (   #{user.userName,jdbcType=VARCHAR},
+            #{user.password,jdbcType=VARCHAR},
+            #{user.phone,jdbcType=VARCHAR},
+            #{user.config,jdbcType=VARCHAR,typeHandler=com.winter.handler.JSONHandler},
+            #{user.signature,jdbcType=VARCHAR,typeHandler=com.winter.handler.SignatureHandler},
+            #{user.sex,jdbcType=VARCHAR,javaType=com.winter.enums.SexEnum,typeHandler=com.winter.handler.CodedEnumTypeHandler}
+        )
+        </foreach>
+    </insert>
 </mapper>
