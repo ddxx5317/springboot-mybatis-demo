@@ -1,27 +1,23 @@
-package com.winter.Controller;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.winter.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.winter.enums.SexEnum;
 import com.winter.mapper.UserMapper;
 import com.winter.model.User;
-import com.winter.service.user.UserService;
-
-import com.winter.utils.Signature;
+import com.winter.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.omg.PortableInterceptor.USER_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import sun.rmi.runtime.Log;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/8/16.
