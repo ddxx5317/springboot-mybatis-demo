@@ -13,7 +13,7 @@ public class WebConfigurer implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .excludePathPatterns("/login")
                 .excludePathPatterns("/loginSys")
-                .excludePathPatterns("/test/**")
+                .excludePathPatterns("test/**")
                 .excludePathPatterns("/static/**");
         System.out.println(registry.toString());
     }
