@@ -12,6 +12,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StopWatch;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -141,5 +142,21 @@ public class UserController {
     public Object findAllUser(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize){
     	List<User> users= userService.findAllUser(pageNum,pageSize);
         return users;
+    }
+
+    @ResponseBody
+    @GetMapping(value = "/test")
+    public String test(){
+        User user = new User();
+        user.setUserId(888888);
+        user.setUserName("userName");
+        user.setPassword("passWord");
+        user.setPhone("111");
+        JSONObject config = new JSONObject();
+        config.put("AA", "短信推送内容：马上就要过年了，本公司将进行打折处理一部分商品");
+        config.put("BB", "App推送内容：马上就要放进了，我们可以去happy了啊");
+        user.setConfig(config);
+        user.setSex(SexEnum.FEMALE);
+        return userService.test(user);
     }
 }

@@ -21,4 +21,6 @@ public interface UserService {
 
     int addBatchUsers(List<User> users);
 
+    String test(User user);
+
 }

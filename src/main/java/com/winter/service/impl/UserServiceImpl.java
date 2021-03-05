@@ -1,6 +1,7 @@
 package com.winter.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.winter.aop.MyAnnotation;
 import com.winter.mapper.UserMapper;
 import com.winter.model.User;
 import com.winter.service.UserService;
@@ -40,5 +41,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public int addBatchUsers(List<User> users) {
         return userMapper.insertBatch(users);
+    }
+
+    @Override
+    @MyAnnotation(name = "#user.userName")
+    //@ApiOperationLog(resourceId = "#{user.userId}",operationType = "SAVE",description = "测试注解传递复杂动态参数")
+    public String test(User user) {
+
+        return "success";
     }
 }
