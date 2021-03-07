@@ -3,6 +3,7 @@ package com.winter.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.winter.enums.SexEnum;
 import com.winter.mapper.UserMapper;
+import com.winter.model.TestBean;
 import com.winter.model.User;
 import com.winter.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -157,6 +158,6 @@ public class UserController {
         config.put("BB", "App推送内容：马上就要放进了，我们可以去happy了啊");
         user.setConfig(config);
         user.setSex(SexEnum.FEMALE);
-        return userService.test(user);
+        return userService.test(user,new TestBean("ddxx",22));
     }
 }

@@ -34,8 +34,7 @@ public class MyAnnotationAspect {
 		//获取被拦截方法参数名列表(使用Spring支持类库)
 		LocalVariableTableParameterNameDiscoverer localVariableTable = new LocalVariableTableParameterNameDiscoverer();
 		String[] paraNameArr = localVariableTable.getParameterNames(method);
-		//使用SPEL进行key的解析
-		ExpressionParser parser = new SpelExpressionParser();
+
 		//SPEL上下文
 		StandardEvaluationContext context = new StandardEvaluationContext();
 		//把方法参数放入SPEL上下文中
@@ -45,6 +44,8 @@ public class MyAnnotationAspect {
 		String businessId = null;
 		// 使用变量方式传入业务动态数据
 		if(businessIdSpel.matches("^#.*.$")) {
+			//使用SPEL进行key的解析
+			ExpressionParser parser = new SpelExpressionParser();
 			businessId = parser.parseExpression(businessIdSpel).getValue(context, String.class);
 		}
 		System.out.println(businessId);

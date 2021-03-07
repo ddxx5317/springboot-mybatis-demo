@@ -1,5 +1,6 @@
 package com.winter.service;
 
+import com.winter.model.TestBean;
 import com.winter.model.User;
 
 import java.util.List;
@@ -21,6 +22,6 @@ public interface UserService {
 
     int addBatchUsers(List<User> users);
 
-    String test(User user);
+    String test(User user, TestBean testBean);
 
 }
