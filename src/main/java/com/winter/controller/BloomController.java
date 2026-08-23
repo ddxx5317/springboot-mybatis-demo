@@ -8,10 +8,11 @@ import com.winter.service.BloomService;
 import com.winter.utils.BloomFilterUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -19,7 +20,7 @@ import java.io.ByteArrayOutputStream;
 /**
  * Created by Administrator on 2017/8/16.
  */
-@Controller
+@RestController
 @RequestMapping(value = "/bloom")
 @Slf4j
 public class BloomController {
@@ -30,7 +31,10 @@ public class BloomController {
 
     @GetMapping(value = "/test/{value}")
     public String test(@PathVariable("value") String value) throws Exception {
-        BloomFilter filter = BloomFilterUtils.get("eth");
+        BloomFilter<CharSequence> filter = BloomFilterUtils.get("eth");
+        if (filter == null) {
+            throw new IllegalStateException("Bloom filter 'eth' is not initialized");
+        }
         boolean result = filter.mightContain(value);
         log.info("result:{}",result);
         return SUCCESS;
@@ -47,7 +51,7 @@ public class BloomController {
         return SUCCESS;
     }
 
-    @GetMapping(value = "/add")
+    @PostMapping(value = "/add")
     public String addBloom() throws Exception {
         Bloom bloom = new Bloom();
         bloom.setChainId("eth");

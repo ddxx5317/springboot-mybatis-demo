@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -36,7 +37,7 @@ public class UserController {
     private SqlSessionTemplate sqlSessionTemplate;
 
     @ResponseBody
-    @RequestMapping(value = "/add", produces = {"application/json;charset=UTF-8"})
+    @PostMapping(value = "/add", produces = {"application/json;charset=UTF-8"})
     public int addUser(User user){
     	user.setUserName("user");
     	user.setPassword("user001");
@@ -49,7 +50,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/add2", produces = {"application/json;charset=UTF-8"})
+    @PostMapping(value = "/add2", produces = {"application/json;charset=UTF-8"})
     public String addUser2(){
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
@@ -70,7 +71,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/add3", produces = {"application/json;charset=UTF-8"})
+    @PostMapping(value = "/add3", produces = {"application/json;charset=UTF-8"})
     public String addUser3(){
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
@@ -95,7 +96,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/add4", produces = {"application/json;charset=UTF-8"})
+    @PostMapping(value = "/add4", produces = {"application/json;charset=UTF-8"})
     public String addUser4(){
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();

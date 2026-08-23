@@ -2,7 +2,8 @@ package com.winter.utils;
 
 import com.google.common.hash.BloomFilter;
 
-import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @Description:
@@ -10,13 +11,13 @@ import java.util.HashMap;
  * @Date: 2022/11/27
  */
 public class BloomFilterUtils {
-    public final static HashMap<String, BloomFilter> map = new HashMap<>();
+    private static final Map<String, BloomFilter<CharSequence>> FILTERS = new ConcurrentHashMap<>();
 
-    public static BloomFilter get(String str){
-       return map.get(str);
+    public static BloomFilter<CharSequence> get(String str){
+       return FILTERS.get(str);
     }
 
-    public static void init(String chainId, BloomFilter bloomFilter){
-       map.put(chainId, bloomFilter);
+    public static void init(String chainId, BloomFilter<CharSequence> bloomFilter){
+       FILTERS.put(chainId, bloomFilter);
     }
 }

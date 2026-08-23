@@ -5,9 +5,9 @@ server:
 spring:
     datasource:
         name: test
-        url: jdbc:mysql://127.0.0.1:3306/mytest?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-        username: root
-        password: Zhaoxw2019@
+        url: ${DB_URL:jdbc:mysql://127.0.0.1:3306/mytest?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true}
+        username: ${DB_USERNAME:root}
+        password: ${DB_PASSWORD:}
         # 使用druid数据源
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
@@ -29,12 +29,17 @@ spring:
         enabled: true
         max-file-size: 10MB
         max-request-size: 100MB
-    main:
-       allow-circular-references: true
     security:
       user:
-        name: admin
-        password: admin
+        name: ${APP_SECURITY_USERNAME:admin}
+        password: ${APP_SECURITY_PASSWORD:change-me}
+
+app:
+  bloom:
+    preload:
+      enabled: false
+      id: 7
+      key: eth
 
 # mybatis支持
 mybatis:

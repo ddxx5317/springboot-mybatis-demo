@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,11 @@ import java.util.List;
 @Slf4j
 public class MyUserDetailsService implements UserDetailsService {
 
+    @Value("${spring.security.user.name}")
+    private String configuredUsername;
+
+    @Value("${spring.security.user.password}")
+    private String configuredPassword;
 
     /**
      * @param username - 前台传入的参数
@@ -28,9 +34,13 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         log.info("username:{}",username);
+        if (!configuredUsername.equals(username)) {
+            throw new UsernameNotFoundException("User not found");
+        }
+
         // 假定创建有一个这样的权限组
         List<GrantedAuthority> auths = AuthorityUtils.commaSeparatedStringToAuthorityList("role");
         // 填入用户名 密码 以及权限组（权限组不能为null）
-        return new User("admin", new BCryptPasswordEncoder().encode("123456"), auths);
+        return new User(configuredUsername, new BCryptPasswordEncoder().encode(configuredPassword), auths);
     }
 }
